@@ -1,15 +1,13 @@
 #Clase Libro
 
 class Libro: 
-
-
     #metodo constructor
-    def __init__(self,id,titulo,autor,isbn):
-        seld,id = id
+    def __init__ (self,id,titulo,autor,isbn,disponible):
+        self.id = id
         self.titulo = titulo
         self.autor = autor
         self.isbn = isbn
-        self.disponible = True 
+        self.disponible = disponible
 
 #Mostrar en la pantalla la información de un libro
     
