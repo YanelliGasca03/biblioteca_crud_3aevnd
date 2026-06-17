@@ -1,3 +1,4 @@
+from database import conexion
 from database.conexion import Conexion
 from models.libro import Libro
 
@@ -66,3 +67,13 @@ class LibroDAO:
         conexion.commit()
         cursor.close()
         conexion.close()
+#UPDATE
+    def actualizar(self,libro):
+         conexion = conexion.obtener_conexion()
+         cursor = conexion.cursor()
+         sql = """"
+         UPDATE libro
+         SET titulo=%s, autor=%s, isbn=%s, disponible=%s
+         """
+
+
