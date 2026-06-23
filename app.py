@@ -56,7 +56,7 @@ def main():
     #Imprime menu de opciones
     print("1. Ver todos los libros")
     print("2. Insertar un nuevo libro")
-    print("Actualizar un libro existente")
+    print("3. Actualizar un libro existente")
     print("4. Eliminar un libro existente")
 
     opcion =int(input("Selecciona una opción (1-4): "))
@@ -65,7 +65,7 @@ def main():
         case 1: ver_todo(libro_dao)            
         case 2: insertar_libro(libro_dao)
         case 3: actualizar_libro(libro_dao)
-        case 4: eliminar_libro(libro_dao,libro)
+        case 4: eliminar_libro(libro_dao,Libro)
 
 if __name__ == "__main__":
     main()
