@@ -1,16 +1,15 @@
 #Clase usuario
 
-from libro import Libro
+class Usuario:
 
-class Usuario: 
-
-    def __init__ (self,id, matricula, nombre, carrera):
+    def __init__(self, id, matricula, nombre, carrera, correo, activo=True):
         self.id = id
         self.matricula = matricula
         self.nombre = nombre
         self.carrera = carrera
-        self.activo = True
-       
+        self.correo = correo
+        self.activo = activo
+
     def activar(self):
         self.activo = True
         print(f"El usuario {self.nombre} ha sido activado")
@@ -21,5 +20,5 @@ class Usuario:
 
     def mostrar_info(self):
         estado = "Activo" if self.activo else "Inactivo"
-        return f"{self.nombre} - {self.matricula} : {estado}"
+        return f"{self.nombre} - {self.matricula}: {estado}"
     

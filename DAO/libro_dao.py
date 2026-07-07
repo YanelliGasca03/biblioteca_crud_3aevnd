@@ -1,4 +1,3 @@
-from database import conexion
 from database.conexion import Conexion
 from models.libro import Libro
 
@@ -25,13 +24,13 @@ class LibroDAO:
         
 
     def insertar(self,libro):
-        conexion = conexion.obtener_conexion()
+        conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = """"
-        INSER INTO libro (titulo, autor, isb, disponible)
-        VALUES (%s, %s, %s, %s)
-        """
+        sql = (
+            "INSERT INTO libro (titulo, autor, isbn, disponible)"
+            "VALUES (%s, %s, %s, %s)"
+        )
         cursor.execute(sql,(
             libro.titulo,
             libro.autor,
@@ -44,39 +43,39 @@ class LibroDAO:
         conexion.close()
 
     def actualizar(self,libro):
-        conexion = conexion.obtener_conexion()
+        conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = """"
-        UPDATE libro
-        SET titulo = %s, autor = %s, 
-        isbn = %s, disponible = %s
-        WHERE id = %s
-        """
+        sql = " UPDATE libro SET titulo=%s, autor=%s, isbn=%s, disponible=%s WHERE id_libro = %s"
         cursor.execute(sql,(
             libro.titulo,
             libro.autor,
             libro.isbn,
             libro.disponible,
-            libro.id
+            libro.id,
         ))
+
+        conexion.commit()
+        cursor.close()
+        conexion.close()
+
     def eliminar(self,id):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        cursor.execute("DELETE FROM libro WHERE id = %s",
-            (id,))
+        cursor.execute("DELETE FROM libro WHERE id_libro = %s", (id,))
         conexion.commit()
         cursor.close()
         conexion.close()
-#UPDATE
-    def actualizar(self,libro):
-         conexion = conexion.obtener_conexion()
-         cursor = conexion.cursor()
-         sql = """"
-         UPDATE libro
-         SET titulo=%s, autor=%s, isbn=%s, disponible=%s
-         
-         """
+    
+    def obtener_ultimo_id():
+        conexion = Conexion.obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT id_libro FROM libro order by id_libro desc")
+        resultado =cursor.fetchone()
+        cursor.close()
+        conexion.close()
+        return resultado 
+    
 
 
