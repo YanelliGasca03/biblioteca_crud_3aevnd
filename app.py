@@ -1,4 +1,7 @@
- from DAO import usuario_dao
+import flet as ft
+
+from ui.main_windows import main_window
+from DAO import usuario_dao
 from DAO.libro_dao import LibroDAO 
 from models.libro import Libro
 from models.usuario import Usuario, UsuarioDAO
@@ -52,23 +55,26 @@ def eliminar_libro(libro_dao):
     print("Libros disponibles")
     ver_todo(libro_dao)
 
+ft.app( target=main_window )
 def main():
-    print("Biblioteca universitaria")
-    libro_dao = LibroDAO()
+  
 
-    #Imprime menu de opciones
-    print("1. Ver todos los libros")
-    print("2. Insertar un nuevo libro")
-    print("3. Actualizar un libro existente")
-    print("4. Eliminar un libro existente")
+    # print("Biblioteca universitaria")
+    # libro_dao = LibroDAO()
 
-    opcion =int(input("Selecciona una opción (1-4): "))
+    # #Imprime menu de opciones
+    # print("1. Ver todos los libros")
+    # print("2. Insertar un nuevo libro")
+    # print("3. Actualizar un libro existente")
+    # print("4. Eliminar un libro existente")
 
-    match opcion:
-        case 1: ver_todo(libro_dao)            
-        case 2: insertar_libro(libro_dao)
-        case 3: actualizar_libro(libro_dao)
-        case 4: eliminar_libro(libro_dao)
+    # opcion =int(input("Selecciona una opción (1-4): "))
+
+    # match opcion:
+    #     case 1: ver_todo(libro_dao)            
+    #     case 2: insertar_libro(libro_dao)
+    #     case 3: actualizar_libro(libro_dao)
+    #     case 4: eliminar_libro(libro_dao)
 
     main()
 def ver_usuarios(usuario_dao):
