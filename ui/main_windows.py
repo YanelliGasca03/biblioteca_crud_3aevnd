@@ -12,11 +12,12 @@ def main_window(page: ft.Page):
     titulo = ft.Text(
         "Sistema de Gestion de Biblioteca",
         size = 24,
-        weight = ft.Weight.BOLD
+        weight = ft.FontWeight.BOLD,
+        color = ft.Colors.BLUE_GREY_800
     )
 
     subtitulo = ft.Text (
-        "Seleccone una opción del menú",
+        "Seleccione una opción del menú",
         size = 16,
         color = ft.Colors.BLUE_GREY_600
     )
@@ -41,10 +42,10 @@ def main_window(page: ft.Page):
         padding=20,
         content = ft.Column(
             controls = [
-                ft.text(
+                ft.Text(
                     "Biblioteca",
                     size = 22,
-                    weight = ft.FontWeigh.BOLD,
+                    weight = ft.FontWeight.BOLD,
                     color = ft.Colors.WHITE
                     
                 ),
@@ -56,22 +57,22 @@ def main_window(page: ft.Page):
                 ft.Divider(color = ft.Colors.BLUE_GREY_700),
                 #BOTONES
                 ft.ElevatedButton(
-                    text = "Libros",
+                    "Libros",
                     icon = ft.Icons.BOOK,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Usuarios",
+                     "Usuarios",
                     icon = ft.Icons.PERSON,
                     width = 180
                 ),
                  ft.ElevatedButton(
-                    text = "Préstamos",
+                     "Préstamos",
                     icon = ft.Icons.SWAP_HORIZ,
                     width = 180
                 ), 
                 ft.ElevatedButton(
-                    text = "Devoluciones",
+                    "Devoluciones",
                     icon = ft.Icons.KEYBOARD_RETURN,
                     width = 180
                 ),          

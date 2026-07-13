@@ -1,19 +1,16 @@
 from database.conexion import Conexion
 from models.usuario import Usuario
 
-
 class UsuarioDAO:
 
     def obtener_usuarios(self):
-
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        cursor.execute("SELECT * FROM usuario ORDER BY id")
+        cursor.execute("SELECT * FROM vitas_usuarios")
         registros = cursor.fetchall()
 
         usuarios = []
-
         for registro in registros:
             usuario = Usuario(
                 id=registro[0],
@@ -27,18 +24,13 @@ class UsuarioDAO:
 
         cursor.close()
         conexion.close()
-
         return usuarios
 
     def insertar(self, usuario):
-
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = """
-        INSERT INTO usuario(nombre, matricula, carrera, correo, activo)
-        VALUES(%s,%s,%s,%s,%s)
-        """
+        sql = "INSERT INTO usuario(nombre, matricula, carrera, correo, activo) VALUES (%s, %s, %s, %s, %s)"
 
         cursor.execute(sql, (
             usuario.nombre,
@@ -53,19 +45,10 @@ class UsuarioDAO:
         conexion.close()
 
     def actualizar(self, usuario):
-
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = """
-        UPDATE usuario
-        SET nombre=%s,
-            matricula=%s,
-            carrera=%s,
-            correo=%s,
-            activo=%s
-        WHERE id=%s
-        """
+        sql = "UPDATE usuario SET nombre = %s, matricula = %s, carrera = %s, correo = %s, activo = %s WHERE id = %s"
 
         cursor.execute(sql, (
             usuario.nombre,
@@ -81,15 +64,10 @@ class UsuarioDAO:
         conexion.close()
 
     def eliminar(self, id):
-
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        cursor.execute(
-            "DELETE FROM usuario WHERE id=%s",
-            (id,)
-        )
-
+        cursor.execute("DELETE FROM usuario WHERE id = %s", (id,))
         conexion.commit()
         cursor.close()
         conexion.close()
