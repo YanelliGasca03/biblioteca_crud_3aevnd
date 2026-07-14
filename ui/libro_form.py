@@ -1,6 +1,5 @@
 import flet as ft
 
-from ui.libro_form import libro_form
 
 def libro_form():
     titulo_input = ft.TextField(
@@ -22,7 +21,26 @@ def libro_form():
         "",
         color = ft.Colors.GREEN
     )
+    def guardar_libro(e):
+        #Recuperar los valores de los TextField
+        titulo = titulo_input.value  #Nombre_text_field.value
+        autor = autor_input.value
+        isbn = isbn_input.value
 
+        #Validacion
+        if titulo == ""or autor ==""or isbn=="":
+            mensaje.value = "Todos los campos son obligatorios"
+            mensaje.color = ft.Colors.RED
+
+        else:
+            mensaje.value = f"Libro '{titulo}' guardado correctamente"
+            mensaje.color = ft.Colors.GREEN
+            print(f"Título: {titulo},Autor: {autor}, ISBN: {isbn}")
+            titulo_input.value = ""
+            autor_input.value = "" 
+            isbn_input.value = ""
+
+        e.page.update()
     return ft.Container(
         padding = 30,
         content = ft.Column(
@@ -33,7 +51,7 @@ def libro_form():
                     weight = ft.FontWeight.BOLD
                 ),
                 ft.Text(
-                    "Capture los datos básicoos del libro",
+                    "Capture los datos básicos del libro",
                     size = 14,
                     color = ft.Colors.BLUE_GREY_600
                 ),
@@ -44,6 +62,7 @@ def libro_form():
                 ft.ElevatedButton(
                     "Guardar",
                     icon = ft.Icons.SAVE,
+                    on_click = guardar_libro
                 ),
 
                 mensaje

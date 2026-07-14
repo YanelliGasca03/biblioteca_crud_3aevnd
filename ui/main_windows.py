@@ -24,6 +24,7 @@ def main_window(page: ft.Page):
         color = ft.Colors.BLUE_GREY_600
     )
 
+
     #CONTENEDOR CENTRAL 
     contenido = ft.Container(
         content = ft.Column(
